@@ -19,6 +19,7 @@ export async function RegisterUser(req:ExtendedRequest, res:Response){
 try {
     const id =uid()
     const{Name,Email,Password} = req.body
+    console.log(req.body)
     const {error} =RegistrationSchema.validate(req.body)
     if(error){
         return res.status(422).json(error.details[0].message)

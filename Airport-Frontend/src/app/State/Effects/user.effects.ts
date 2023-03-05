@@ -1,16 +1,17 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { catchError, concatMap, map, mergeMap, of } from "rxjs";
+import { catchError, concatMap, map, mergeMap, of, tap } from "rxjs";
 import { UserServiceService } from "src/app/Services/user-service.service";
 import * as UserActions from '../Actions/user.actions'
 import { User,LoginUser } from "src/app/Interfaces";
+import { Router } from "@angular/router";
 
 
 @Injectable()
 
 export class UserEffects{
     
-        constructor(private userService:UserServiceService,private actions$:Actions ){}
+        constructor(private userService:UserServiceService,private actions$:Actions, private router:Router){}
     
         login=createEffect(()=>{
             return this.actions$.pipe(
@@ -18,9 +19,13 @@ export class UserEffects{
                 mergeMap((action:LoginUser)=>{
                 return this.userService.login(action.Email,action.Password).pipe(
                         map((successResponse:any)=>{
+
+                            localStorage.setItem('token',successResponse.token)
                             return UserActions.loginSuccess({message:successResponse.message,token:successResponse.token,role:successResponse.role,name:successResponse.name})
+
                         }),
-                        catchError(error=>of(UserActions.loginFailure({error:error.message})))
+                        catchError(error=>of(UserActions.loginFailure({error:error.message}))),
+
                     )
                 })
             )

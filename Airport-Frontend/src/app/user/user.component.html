@@ -1,7 +1,7 @@
 
 <div class="user">
 
-<div class="user-card" routerLink="/profile/updateUser">
+<div class="user-card" >
     <div class="user-card-header">
         <h1>Profile</h1>
     </div>
@@ -12,15 +12,16 @@
             </div>
             <div class="user-card-body-left-name">
                 <h1>Name</h1>
-                <h2>{{user.Name}}</h2>
+                <h2>{{user.name}}</h2>
             </div>
         </div>
         <div class="user-card-body-right">
             <div class="user-card-body-right-email">
-                <h1>Email</h1>
-                <h2>{{user.Email}}</h2>
+                <h1>Role</h1>
+                <h2>{{user.role}}</h2>
             </div>
         </div>
+        <button routerLink="/profile/updateUser">update</button>
     </div>
 </div>
 <div class="update">

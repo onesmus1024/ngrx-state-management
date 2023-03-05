@@ -22,10 +22,10 @@ const initialState:UserInterface={
     },
     error:'',
     loginSuccess:{
-        message:'',
-        token:'',
-        role:'',
-        name:''
+        message:'test',
+        token:'test',
+        role:'test',
+        name:'test'
     },
     loginError:'',
     registerSuccess:'',
@@ -33,6 +33,20 @@ const initialState:UserInterface={
     updateSuccess:'',
     updateError:''
 }
+
+const userSliceState= createFeatureSelector<UserInterface>('user')
+
+export const myUser= createSelector(userSliceState, state=>state.user)
+
+export const myLoginSuccess= createSelector(userSliceState, state=>state.loginSuccess)
+
+export const myLoginError= createSelector(userSliceState, state=>state.loginError)
+
+export const myRegisterSuccess= createSelector(userSliceState, state=>state.registerSuccess)
+
+export const myRegisterError= createSelector(userSliceState, state=>state.registerError)
+
+
 
 export const userReducer=createReducer(
     initialState,

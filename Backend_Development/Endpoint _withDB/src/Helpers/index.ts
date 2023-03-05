@@ -17,9 +17,7 @@ export const RegistrationSchema= Joi.object({
         'string.empty':' Please add an Email',
         'string.email':'Not a Valid Email'
     }),
-    Password:Joi.string().required().pattern(new
-         RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*]).{8,}$')),
-
+    Password:Joi.string().required(),
     ConfirmPassword:Joi.equal(ref('Password'))
 })
 

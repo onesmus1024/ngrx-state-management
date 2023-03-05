@@ -34,6 +34,8 @@ export class LoginComponent implements OnInit {
   submitForm(){
     if(this.form.valid){
       this.store.dispatch(UserActions.login({Email:this.form.value.Email,Password:this.form.value.Password}))
+      this.auth.login()
+      this.router.navigate([''])
     
     }
   }
@@ -42,4 +44,6 @@ export class LoginComponent implements OnInit {
   Close(){
     this.error=null
   }
+
+ 
 }
